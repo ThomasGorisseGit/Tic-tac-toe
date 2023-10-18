@@ -107,14 +107,23 @@ class Game():
                 case 3:
                     while self.grid.getWinner() == ' ':
                         self.view.displayTurn(self.whoToPlay)
-                        getUserRowInput = self.view.getUserInputs("row")
-                        getUserColumnInput = self.view.getUserInputs("column")
-                        self.grid.setValue(getUserColumnInput, getUserRowInput, self.getValueToSet())
+                        isValueAccepted = 1
+                        while isValueAccepted != 0:
+                            """
+                            isValueAccepted == 0 if the value is accepted  
+                            if the value is different, display the result   
+                            """
+                            getUserRowInput = self.view.getUserInputs("row")
+                            getUserColumnInput = self.view.getUserInputs("column")
+                            isValueAccepted = self.grid.setValue(getUserColumnInput, getUserRowInput,
+                                                                 self.getValueToSet())
+                            if isValueAccepted != 0:
+                                self.view.displayException(isValueAccepted)
+
                         self.grid.displayGrid()
                         self.changeTurn()
                     self.state += 1
                 case 4:
-                    self.view.displayWinner(self.getPlayerFromValue(self.grid.getWinner()) + " (" + self.grid.getWinner() + ")")
+                    self.view.displayWinner(
+                        self.getPlayerFromValue(self.grid.getWinner()) + " (" + self.grid.getWinner() + ")")
                     self.view.handleEnding()
-
-

@@ -6,30 +6,37 @@ class Grid():
 
     """
     def __init__(self):
+        """
+        Init a grid with nothing
+        """
         self._firstRow = [' ', ' ', ' ']
         self._secondRow = [' ', ' ', ' ']
         self._thirdRow = [' ', ' ', ' ']
         self.grid = [self._firstRow, self._secondRow, self._thirdRow]
 
-    def setValue(self, column, row, value):
-        if value != 'x' and value != 'o':
-            raise Exception("Value must be either 'x' or 'o'")
+    def setValue(self, column, row, symbol):
+        """
+        Set a value to a position and return 0 if the insertion had no issue
+        :param column: position of column in the matrix
+        :param row: position of row in the matrix
+        :param symbol: symbol to insert
+        :return: Either the error or a basic value
+        """
+        if symbol != 'x' and symbol != 'o':
+            return "impossible value"
         if not (0 <= column < 3 and 0 <= row < 3):
-            if 0 <= column < 3:
-                userInput = "Row input is"
-            elif (0 <= row < 3):
-                userInput = "Column input is"
-            else:
-                userInput = "Column and row inputs are"
-
-            raise Exception(userInput + " out of grid | Must be between 0 and 2")
+            return "index out of range"
 
         if self.grid[row][column] != ' ':
-            raise Exception("This box is already taken")
+            return "this box is not free"
 
-        self.grid[row][column] = value
-
+        self.grid[row][column] = symbol
+        return 0
     def displayGrid(self):
+        """
+        Display the grid
+        :return: None
+        """
         print('_____________')
         for i in range(len(self.grid)):
             print("| ", end="")
@@ -38,9 +45,17 @@ class Grid():
             print("\n")
 
     def resetGrid(self):
+        """
+        Reinitialise the value thanks to the constructor
+        :return:
+        """
         self.__init__()
 
     def getWinner(self):
+        """
+        Find if a winner exist and return the symbol
+        :return: Winner's symbol
+        """
         winner = ' '
         for i in range(len(self.grid)):
             if self.grid[i][0] == self.grid[i][1] == self.grid[i][2] != ' ':
@@ -55,5 +70,3 @@ class Grid():
             winner = self.grid[0][2]
 
         return winner
-if __name__ == '__main__':
-    grid = Grid()
