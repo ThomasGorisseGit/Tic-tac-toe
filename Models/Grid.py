@@ -1,4 +1,10 @@
 class Grid():
+    """
+    In MVC Architecture, the models are used to store the data of the application.
+
+    In this case, Grid is used to recreate a Tic Tac Toe game
+
+    """
     def __init__(self):
         self._firstRow = [' ', ' ', ' ']
         self._secondRow = [' ', ' ', ' ']
