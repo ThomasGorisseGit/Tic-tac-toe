@@ -66,3 +66,7 @@ class Prompt:
         :return: None
         """
         print(exceptionMessage)
+    def displayDraw(self):
+        print("------------------------")
+        print("----------DRAW----------")
+        print("------------------------")

@@ -105,7 +105,7 @@ class Game():
                     self.getRandomStart()
                     self.state += 1
                 case 3:
-                    while self.grid.getWinner() == ' ':
+                    while self.grid.getScore() == ' ':
                         self.view.displayTurn(self.whoToPlay)
                         isValueAccepted = 1
                         while isValueAccepted != 0:
@@ -122,8 +122,11 @@ class Game():
 
                         self.grid.displayGrid()
                         self.changeTurn()
+
                     self.state += 1
                 case 4:
-                    self.view.displayWinner(
-                        self.getPlayerFromValue(self.grid.getWinner()) + " (" + self.grid.getWinner() + ")")
+                    if self.grid.getScore() == 'tie':
+                        self.view.displayDraw()
+                    else:
+                        self.view.displayWinner(self.getPlayerFromValue(self.grid.getWinner()) + " (" + self.grid.getWinner() + ")")
                     self.view.handleEnding()

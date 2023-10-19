@@ -51,6 +51,7 @@ class Grid():
         """
         self.__init__()
 
+
     def getWinner(self):
         """
         Find if a winner exist and return the symbol
@@ -70,3 +71,13 @@ class Grid():
             winner = self.grid[0][2]
 
         return winner
+
+    def getScore(self):
+        winner = self.getWinner()
+        if winner != ' ':
+            return winner
+        for i in range(3):
+            for j in range(3):
+                if self.grid[i][j] == ' ':
+                    return ' '
+        return 'tie'
