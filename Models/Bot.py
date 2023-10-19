@@ -1,13 +1,15 @@
 from abc import ABC, abstractmethod
+from Models.Playable import Playable
 
 
-class Bot(ABC):
+class Bot(ABC, Playable):
     """
     Abstract class
     Bot model
     """
-    def __init__(self,nom):
-        self.name = nom
+
+    def __init__(self, name="BOT"):
+        Playable.__init__(self, name)
 
     @abstractmethod
     def makeChoice(self):
@@ -16,4 +18,3 @@ class Bot(ABC):
         :return:
         """
         pass
-

@@ -31,18 +31,16 @@ class Grid():
             return "this box is not free"
 
         self.grid[row][column] = symbol
-        return 0
-    def displayGrid(self):
-        """
-        Display the grid
-        :return: None
-        """
-        print('_____________')
+        return True
+
+    def getGrid(self):
+        gridFormat = '_____________ \n'
         for i in range(len(self.grid)):
-            print("| ", end="")
+            gridFormat += "| "
             for j in range(len(self.grid[i])):
-                print(self.grid[i][j] + " | ", end="")
-            print("\n")
+                gridFormat += self.grid[i][j] + " | "
+            gridFormat += "\n"
+        return gridFormat
 
     def resetGrid(self):
         """

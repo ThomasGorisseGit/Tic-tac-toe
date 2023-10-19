@@ -1,10 +1,9 @@
 import random
-from Bot import Bot
+from Models.Playable import Playable
 
-
-class RandomBot(Bot):
+class RandomBot(Playable):
     def __init__(self, botName="RandomBot"):
-        Bot.__init__(self, botName)
+        Playable.__init__(self, botName)
 
     def makeChoice(self):
         i = random.randint(0, 2)
