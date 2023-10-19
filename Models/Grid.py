@@ -5,7 +5,8 @@ class Grid():
     In this case, Grid is used to recreate a Tic Tac Toe game
 
     """
-    def __init__(self):
+
+    def __init__(self, add_grid=False):
         """
         Init a grid with nothing
         """
@@ -13,6 +14,8 @@ class Grid():
         self._secondRow = [' ', ' ', ' ']
         self._thirdRow = [' ', ' ', ' ']
         self.grid = [self._firstRow, self._secondRow, self._thirdRow]
+        if add_grid:
+            self.grid = add_grid
 
     def setValue(self, column, row, symbol):
         """
@@ -49,7 +52,6 @@ class Grid():
         """
         self.__init__()
 
-
     def getWinner(self):
         """
         Find if a winner exist and return the symbol
@@ -79,3 +81,11 @@ class Grid():
                 if self.grid[i][j] == ' ':
                     return ' '
         return 'tie'
+
+    def possiblesMoves(self):
+        moves = []
+        for i in range(3):
+            for j in range(3):
+                if (self.grid[i][j] == ' '):
+                    moves.append((i, j))
+        return moves

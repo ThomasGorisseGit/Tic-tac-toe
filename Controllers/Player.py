@@ -4,9 +4,9 @@ from Views.PlayerView import PlayerView
 
 class Player(Playable):
 
-    def __init__(self, ):
+    def __init__(self, symbol):
         self.view = PlayerView(self)
-        Playable.__init__(self, self.view.getPlayerName())
+        Playable.__init__(self, self.view.getPlayerName(), symbol)
 
-    def makeChoice(self):
+    def makeChoice(self, firstPlayer, grid=None):
         return self.view.getRowInput(), self.view.getColumnInput()

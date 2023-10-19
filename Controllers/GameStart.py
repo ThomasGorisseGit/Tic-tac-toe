@@ -2,7 +2,7 @@ from Views.GameView import Prompt
 from Models.Game import Game
 from Controllers.Player import Player
 from AI.RandomBot import RandomBot
-
+from AI.MinimaxBot import MinimaxBot
 
 class GameStart():
     def __init__(self):
@@ -36,21 +36,21 @@ class GameStart():
                     self.view.choosePlayers()
 
                 case "PvP":
-                    player1 = Player()
-                    player2 = Player()
+                    player1 = Player('x')
+                    player2 = Player('o')
                     self.game.setPlayers(player1, player2)
 
                     self.state = "InitGrid"
 
                 case "PvB":
-                    player1 = Player()
-                    bot1 = RandomBot()
+                    player1 = Player('x')
+                    bot1 = MinimaxBot('o')
                     self.game.setPlayers(player1, bot1)
                     self.state = "InitGrid"
 
                 case "BvB":
-                    bot1 = RandomBot("RandomBot 1 - Fry")
-                    bot2 = RandomBot("RandomBot 2 - John")
+                    bot1 = RandomBot("x","RandomBot 1 - Fry")
+                    bot2 = MinimaxBot("o", "MiniMax 2 - John")
                     self.game.setPlayers(bot1, bot2)
                     self.state = "InitGrid"
 
@@ -70,10 +70,10 @@ class GameStart():
                             """
                             playerInputs = self.game.makePlayerPlay()
                             isValueAccepted = self.game.tryToSetValues(playerInputs)
-                            if isValueAccepted != True:
+                            if not isValueAccepted:
                                 self.view.displayException(isValueAccepted)
 
-                            self.view.displayGrid(self.game.getGrid())
+                        self.view.displayGrid(self.game.getGrid())
                         self.game.changeTurn()
                     self.state = "HandleEnding"
                 case "HandleEnding":

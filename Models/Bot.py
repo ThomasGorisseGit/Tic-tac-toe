@@ -1,20 +1,11 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from Models.Playable import Playable
 
+class Bot(Playable):
+    def __init__(self, playerName, symbol):
+        super().__init__(playerName, symbol)
 
-class Bot(ABC, Playable):
-    """
-    Abstract class
-    Bot model
-    """
-
-    def __init__(self, name="BOT"):
-        Playable.__init__(self, name)
 
     @abstractmethod
-    def makeChoice(self):
-        """
-        Allows Bots to make a choice
-        :return:
-        """
-        pass
+    def makeChoice(self, grid, firstPlayer):
+        return 0, 0

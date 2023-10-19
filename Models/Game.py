@@ -29,7 +29,7 @@ class Game():
         self.player1 = None
         self.player2 = None
         self.whoToPlay = None
-
+        self.firstPlayer = None
     def setPlayers(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
@@ -42,6 +42,8 @@ class Game():
             self.whoToPlay = self.player1
         else:
             self.whoToPlay = self.player2
+
+        self.firstPlayer = self.whoToPlay
 
     def changeTurn(self):
         """
@@ -83,11 +85,11 @@ class Game():
     def getScore(self):
         return self.grid.getScore()
     def makePlayerPlay(self):
-        return self.whoToPlay.makeChoice()
+        return self.whoToPlay.makeChoice(self.grid,self.firstPlayer.symbol)
 
     def tryToSetValues(self, values):
         print(values)
-        return self.grid.setValue(values[1], values[0], self.getValueToSet())
+        return self.grid.setValue(values[1], values[0], self.whoToPlay.symbol)
     def getGrid(self):
         return self.grid.getGrid()
     def getWinner(self):
