@@ -7,5 +7,5 @@ class Bot(Playable):
 
 
     @abstractmethod
-    def makeChoice(self, grid, firstPlayer):
+    def makeChoice(self, grid):
         return 0, 0

@@ -9,10 +9,9 @@ class MinimaxBot(Bot):
     def __init__(self, symbol, botName="MiniMaxBot"):
         Bot.__init__(self, botName, symbol)
 
-    def makeChoice(self, newGrid, firstPlayer):
+    def makeChoice(self, newGrid):
         isMaximizing = False
-        if firstPlayer == self.symbol:
-            isMaximizing = True
+
         grid = copy.deepcopy(newGrid)
         bestMove = (-1, -1)
         bestVal = -1000

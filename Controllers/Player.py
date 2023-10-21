@@ -8,5 +8,5 @@ class Player(Playable):
         self.view = PlayerView(self)
         Playable.__init__(self, self.view.getPlayerName(), symbol)
 
-    def makeChoice(self, firstPlayer, grid=None):
+    def makeChoice(self, grid=None):
         return self.view.getRowInput(), self.view.getColumnInput()

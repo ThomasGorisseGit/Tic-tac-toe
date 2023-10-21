@@ -7,5 +7,5 @@ class Playable(ABC):
         self.symbol = symbol
 
     @abstractmethod
-    def makeChoice(self, grid, firstPlayer):
+    def makeChoice(self, grid):
         return 0, 0
